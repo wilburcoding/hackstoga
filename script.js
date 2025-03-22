@@ -449,7 +449,7 @@ console.log(resetcval());
 
 
 function preload() {
-  font = loadFont('/assets/winkysans.ttf');
+  font = loadFont('./assets/winkysans.ttf');
   bghome = loadImage('https://i.ibb.co/mdFc7j9/bgc.png');
   htphome = loadImage('https://i.ibb.co/mr8xynhK/howtoplay.png');
 
