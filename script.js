@@ -284,6 +284,17 @@ function mouseReleased() {
     item.released();
   }
 }
+
+function shuffle(array) {
+  let currentIndex = array.length;
+  while (currentIndex != 0) {
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+}
+
 let font;
 let page = 0;
 let mdown = false;
@@ -449,7 +460,7 @@ console.log(resetcval());
 
 
 function preload() {
-  font = loadFont('https://wilburcoding.github.io/hackstoga/assets/winkysans.ttf');
+  font = loadFont("https://wilburcoding.github.io/hackstoga/assets/winkysans.ttf");
   bghome = loadImage('https://i.ibb.co/mdFc7j9/bgc.png');
   htphome = loadImage('https://i.ibb.co/mr8xynhK/howtoplay.png');
 
@@ -640,7 +651,19 @@ function draw() {
                 }
 
               }
-              console.log(cval)
+              let locs = [];
+              for (var shape of shapes) {
+                locs.push([shape.x, shape.y]);
+              }
+              locs = locs.map(value => ({ value, sort: Math.random() }))
+                .sort((a, b) => a.sort - b.sort)
+                .map(({ value }) => value)
+              for (var shape of shapes) {
+                const lo = locs[0];
+                shape.x = lo[0];
+                shape.y=lo[1];
+                locs.splice(0,1)
+              }
             }
           }
 
